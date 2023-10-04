@@ -1,0 +1,30 @@
+version: "3.2"
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      args:
+        DOMAIN: ${DOMAIN}
+        EMAIL: ${EMAIL}
+        FLASK: app
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - app
+
+  app:
+    build: ./${APP_FOLDER}
+    command: gunicorn --bind 0.0.0.0:5002 --workers 3 ${FLASK_APP}:ytd
+    environment:
+      - FLASK_ENV=${FLASK_ENV}
+    ports:
+      - 5002:5002
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

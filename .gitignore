@@ -1,0 +1,10 @@
+.env
+/flask-app/env
+*.DS_Store
+__pycache__
+core/venv
+*.tar
+*.swp
+*.log
+.venv
+.env

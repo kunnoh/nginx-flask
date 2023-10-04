@@ -1,14 +1,15 @@
 # nginx-flask docker-compose with let's encrypt
 
-## Turning it on
-
-**Start application**
+## Clone and setup environment
 ```sh
-sudo make compose-start
+git clone https://github.com/kunnoh/nginx-flask.git
 ```
-<p style="text-align: center;">
- 🎉 Your web-app should now be running online with HTTPS 🎉   
-</p>
+got to folder 
+```sh
+cd nginx-flask
+```
+
+## Operate the system
 
 **All commands**
 
@@ -19,5 +20,17 @@ Usage: make [TARGET ...]
 help            Show this help menu
 compose-stop         Stop docker-compose.yml (might need sudo)
 compose-start        Start docker-compose.yml (might need sudo)
-docker-start-local  Start docker for local dev (w/o nginx)
+compose-start-local  Start docker for local dev (w/o nginx)
 ```
+
+**Start application**
+```sh
+sudo make compose-start
+```
+Your web-app should now be running online with HTTPS
+
+**Start application locally**
+```sh
+sudo make compose-start-local
+```
+Your web-app should now be running without nginx.

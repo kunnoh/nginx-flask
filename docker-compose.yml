@@ -2,6 +2,7 @@ version: "3.2"
 
 services:
   nginx:
+    container_name: web-nginx
     build:
       context: ./nginx
       args:
@@ -17,8 +18,9 @@ services:
       - app
 
   app:
+    container_name: flask-api
     build: ./${APP_FOLDER}
-    command: gunicorn --bind 0.0.0.0:5002 --workers 3 ${FLASK_APP}:ytd
+    command: ["uwsgi", "--ini", "app.ini"]
     environment:
       - FLASK_ENV=${FLASK_ENV}
     ports:

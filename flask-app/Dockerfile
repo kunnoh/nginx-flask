@@ -5,12 +5,14 @@ RUN apk update \
   && apk add --no-cache \
     gcc \
     libffi-dev \
-    musl-dev
+    musl-dev \
+    pcre \
+    pcre-dev
 
 WORKDIR /opt/app
 
 # App non-root user
-ENV GROUP=app
+ENV GROUP=flask-app
 ENV USER=flask
 ENV UID=1245
 ENV GID=1212
@@ -24,6 +26,10 @@ RUN addgroup --gid "$GID" "$GROUP" \
 # Switch to the non-root user
 USER "$USER"
 ENV PATH="/home/$USER/.local/bin:${PATH}"
+
+# uwsgi processes. by default it starts with 2 processes
+ENV UWSGI_CHEAPER 4
+ENV UWSGI_PROCESSES 64
 
 # Copy requirements file to our container, install, and remove
 # files to we don't need to reduce the container size

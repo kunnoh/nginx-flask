@@ -25,12 +25,12 @@ compose-start-local  Start docker for local dev (w/o nginx)
 
 **Start application**
 ```sh
-sudo make compose-start
+make compose-start
 ```
 Your web-app should now be running online with HTTPS
 
 **Start application locally**
 ```sh
-sudo make compose-start-local
+make compose-start-local
 ```
 Your web-app should now be running without nginx.

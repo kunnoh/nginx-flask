@@ -22,6 +22,7 @@ ENV DOMAIN=$DOMAIN
 ENV FLASK=$FLASK
 ENV EMAIL=$EMAIL
 ENV DOLLAR='$'
+ENV NGINX_MAX_UPLOAD 1m 
 
 # Substitute contents and write a new application.conf file, which is imported
 # by nginx.conf
